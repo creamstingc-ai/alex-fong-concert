@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>方力申 Alex Fong - 人物画像</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --accent: #0065ea;
+            --gold: #d4af37;
+            --light: #f8f8f8;
+            --gradient-1: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            --gradient-2: linear-gradient(45deg, #1565c0, #42a5f5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background: var(--primary);
+            color: var(--light);
+            overflow-x: hidden;
+        }
+
+        .hero {
+            min-height: 100vh;
+            background: var(--gradient-1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(233, 69, 96, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .hero-text {
+            position: relative;
+            z-index: 2;
+        }
+
+        .name-badge {
+            display: inline-block;
+            background: var(--gradient-2);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        h1 {
+            font-size: 72px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        h1 span {
+            display: block;
+            background: linear-gradient(90deg, #fff, var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 24px;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 40px;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .concert-banner {
+            background: linear-gradient(135deg, var(--accent), #42a5f5);
+            padding: 30px 40px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease 0.6s both;
+        }
+
+        .concert-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(50%); }
+        }
+
+        .concert-date {
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        .concert-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .concert-venue {
+            font-size: 16px;
+            opacity: 0.9;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hero-image {
+            position: relative;
+            animation: fadeIn 1s ease 0.5s both;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 700px;
+            object-fit: cover;
+            border-radius: 30px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+        }
+
+        .hero-image::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: -20px;
+            bottom: -20px;
+            border: 3px solid var(--gold);
+            border-radius: 30px;
+            z-index: -1;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            padding: 40px;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: rgba(255,255,255,0.6);
+            margin-top: 5px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .section {
+            padding: 100px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 60px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--gradient-2);
+            border-radius: 2px;
+        }
+
+        .identity-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .identity-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 25px;
+            padding: 40px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .identity-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-2);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .identity-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .identity-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .identity-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--gradient-2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 25px;
+        }
+
+        .identity-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+
+        .identity-desc {
+            font-size: 16px;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .identity-desc li {
+            margin-bottom: 12px;
+            list-style: none;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .identity-desc li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-top: 60px;
+        }
+
+        .gallery-item {
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        .timeline-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1a 100%);
+            padding: 100px 40px;
+        }
+
+        .timeline {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent), var(--gold));
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: calc(50% + 40px);
+            position: relative;
+            margin-bottom: 50px;
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: calc(50% + 40px);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 4px solid var(--primary);
+        }
+
+        .timeline-content {
+            background: rgba(255,255,255,0.05);
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 400px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .timeline-year {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        .timeline-text {
+            font-size: 15px;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .cta-section {
+            background: var(--gradient-2);
+            padding: 80px 40px;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .cta-text {
+            font-size: 20px;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #fff;
+            color: var(--accent);
+            padding: 18px 50px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        footer {
+            background: #0a0a15;
+            padding: 40px;
+            text-align: center;
+            color: rgba(255,255,255,0.5);
+        }
+
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 50px;
+                text-align: center;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+
+            h1 {
+                font-size: 48px;
+            }
+
+            .identity-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                padding-left: 60px;
+                padding-right: 0;
+                justify-content: flex-start;
+            }
+
+            .timeline-item::before {
+                left: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="name-badge">香港全能艺人</div>
+                <h1>方力申<span>Alex Fong</span></h1>
+                <p class="subtitle">从奥运泳将到歌影视三栖巨星</p>
+                
+                <div class="concert-banner">
+                    <div class="concert-date">2026.05.15 - 05.16</div>
+                    <div class="concert-title">方力申 Perfect Moment<br>最佳时间演唱会</div>
+                    <div class="concert-venue">📍 香港红磡体育馆 · 首次红馆开唱</div>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">25+</div>
+                        <div class="stat-label">年演艺生涯</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">9</div>
+                        <div class="stat-label">项香港泳纪录</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">部影视作品</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-image">
+                <img src="wechat-img.jpg" alt="方力申">
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">多元身份</h2>
+        <div class="identity-grid">
+            <div class="identity-card">
+                <div class="identity-icon">🏊</div>
+                <h3 class="identity-title">运动员 · 飞鱼王子</h3>
+                <ul class="identity-desc">
+                    <li>1989年开始游泳训练，11岁代表香港参赛</li>
+                    <li>2000年悉尼奥运会选手，参加200米仰泳、400米混合泳</li>
+                    <li>曾持有9项香港游泳纪录，被誉为"飞鱼王子"</li>
+                    <li>1996年东京游泳邀请赛全场总冠军</li>
+                    <li>1997-1998年连续获"可口可乐青少年杰出运动员"</li>
+                    <li>2004年、2008年担任奥运火炬手</li>
+                    <li>2018年创办香港游泳学校</li>
+                    <li>2019年完成45公里香港环岛泳挑战</li>
+                </ul>
+            </div>
+
+            <div class="identity-card">
+                <div class="identity-icon">🎤</div>
+                <h3 class="identity-title">歌手 · 唱作实力派</h3>
+                <ul class="identity-desc">
+                    <li>2001年出道，发行首张专辑《方力申》</li>
+                    <li>获得新城劲爆新人王(2001)</li>
+                    <li>十大劲歌金曲最受欢迎新人奖男歌手银奖(2002)</li>
+                    <li>与邓丽欣合唱《好心好报》《好好恋爱》获最受欢迎合唱歌奖</li>
+                    <li>代表作：《一周年》《大方》《好好恋爱》</li>
+                    <li>2025年推出新歌《万刀甲》</li>
+                    <li>2026年5月首踏红馆举行个人演唱会</li>
+                </ul>
+            </div>
+
+            <div class="identity-card">
+                <div class="identity-icon">🎬</div>
+                <h3 class="identity-title">演员 · 爱情片王子</h3>
+                <ul class="identity-desc">
+                    <li>2001年于TVB剧集《异灵灵异》首次亮相</li>
+                    <li>与叶念琛合作"爱情四部曲"：《独家试爱》《十分爱》《我的最爱》《分手再说我爱你》</li>
+                    <li>参演《夏日恋神马》《宅男总动员》《唐朝浪漫英雄》等</li>
+                    <li>近年作品：《廉政狙击》《美丽战场》《出租家人》《斗转乾坤》</li>
+                    <li>2025年参加《演员请就位第三季》</li>
+                </ul>
+            </div>
+
+            <div class="identity-card">
+                <div class="identity-icon">🎙️</div>
+                <h3 class="identity-title">主持人 · 奥运直击</h3>
+                <ul class="identity-desc">
+                    <li>2024年担任TVB奥运主持，远赴巴黎直击奥运实况</li>
+                    <li>2024年参加《声生不息·港乐季2》</li>
+                    <li>2022年献唱抗疫歌曲《狮子山下同心抗疫》</li>
+                    <li>多次担任慈善活动主持及大使</li>
+                    <li>2014年当选"香港十大杰出青年"</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600&q=80" alt="红馆演唱会舞台">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=600&q=80" alt="演唱会现场">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=600&q=80" alt="音乐表演">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=600&q=80" alt="演唱会灯光">
+            </div>
+        </div>
+    </section>
+
+    <section class="timeline-section">
+        <div class="section" style="padding-top: 0;">
+            <h2 class="section-title">人生轨迹</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1980</div>
+                        <div class="timeline-text">2月26日出生于香港</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1989</div>
+                        <div class="timeline-text">开始游泳训练，展现运动天赋</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2000</div>
+                        <div class="timeline-text">代表香港参加悉尼奥运会，被誉为"飞鱼王子"</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2001</div>
+                        <div class="timeline-text">进入娱乐圈，发行首张专辑《方力申》</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2004</div>
+                        <div class="timeline-text">正式退役，全面投身演艺事业</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2006-2008</div>
+                        <div class="timeline-text">拍摄"爱情四部曲"，奠定爱情片王子地位</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2014</div>
+                        <div class="timeline-text">当选香港十大杰出青年</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2023</div>
+                        <div class="timeline-text">与叶萱(Maple)结婚</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2024</div>
+                        <div class="timeline-text">担任TVB奥运主持；女儿方爱嘉(Isla)出生</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2026</div>
+                        <div class="timeline-text">5月15-16日首次踏足红馆举办个人演唱会</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2 class="cta-title">🎉 首次红馆演唱会</h2>
+        <p class="cta-text">25年演艺生涯 · 首个个人红馆舞台<br>方力申 Perfect Moment 最佳时间演唱会</p>
+        <a href="#" class="cta-button">📅 2026年5月15-16日 · 香港红磡体育馆</a>
+    </section>
+
+    <footer>
+        <p>© 2026 方力申 Alex Fong 人物画像 | 资料来源：公开信息整理</p>
+    </footer>
+</body>
+</html>
